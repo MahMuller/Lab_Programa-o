@@ -1,0 +1,83 @@
+/* ================================================================
+   processo.css — Confirmação de compra
+   TRABWILLEN — Confecções em Feltro
+   ================================================================ */
+
+body {
+  margin: 0;
+  background: var(--cor-fundo);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 24px;
+}
+
+.sucesso-card {
+  width: 100%;
+  max-width: 560px;
+  background: var(--cor-card);
+  border: 1px solid var(--cor-borda);
+  border-radius: 18px;
+  padding: 44px 40px;
+  box-shadow: 0 16px 40px rgba(92,42,58,.1);
+  text-align: center;
+}
+
+.icone { font-size: 60px; margin-bottom: 8px; }
+
+h1 {
+  color: var(--cor-texto-escuro);
+  font-size: 24px;
+  font-weight: 900;
+  margin-bottom: 10px;
+}
+
+.sucesso-card > p {
+  color: var(--cor-subtexto);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.dados { margin-top: 30px; text-align: left; }
+
+.linha {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--cor-borda);
+  font-size: 13px;
+}
+.linha span { color: var(--cor-muted); }
+.linha strong { color: var(--cor-texto-escuro); text-align: right; }
+
+.botoes { margin-top: 30px; display: flex; flex-direction: column; gap: 10px; }
+
+.btn-primario {
+  width: 100%;
+  padding: 14px;
+  background: var(--cor-acento);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 700;
+  transition: background .2s;
+}
+.btn-primario:hover { background: var(--cor-acento-d); }
+
+.btn-secundario {
+  width: 100%;
+  padding: 12px;
+  background: none;
+  color: var(--cor-texto);
+  border: 1.5px solid var(--cor-borda-input);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  box-sizing: border-box;
+  transition: all .2s;
+}
+.btn-secundario:hover { border-color: var(--cor-acento); color: var(--cor-acento); }

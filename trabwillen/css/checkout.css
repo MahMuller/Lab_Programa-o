@@ -1,0 +1,195 @@
+/* ================================================================
+   checkout.css — Página de finalização de compra
+   TRABWILLEN — Confecções em Feltro
+   ================================================================ */
+
+body {
+  background: var(--cor-fundo);
+  padding-bottom: 60px;
+}
+
+/* Cabeçalho simplificado da etapa de checkout */
+header .logo { font-size: 18px; font-weight: 900; letter-spacing: 4px; text-transform: uppercase; color: var(--cor-texto); }
+
+.checkout-steps { display: flex; align-items: center; gap: 10px; }
+.step {
+  font-size: 12px; font-weight: 600; color: var(--cor-muted);
+  letter-spacing: .2px;
+}
+.step.done { color: var(--cor-acento); }
+.step.ativo { color: var(--cor-texto-escuro); font-weight: 800; }
+.step-sep { color: var(--cor-borda-input); font-size: 13px; }
+
+.btn-voltar-loja {
+  font-size: 13px; font-weight: 600; color: var(--cor-subtexto);
+  transition: color .2s;
+}
+.btn-voltar-loja:hover { color: var(--cor-acento); }
+
+@media (max-width: 768px) {
+  .checkout-steps { display: none; }
+}
+
+/* Título da página */
+.checkout-wrap { max-width: 1200px; margin: 0 auto; padding: 36px 40px 0; }
+.checkout-titulo { margin-bottom: 26px; }
+.checkout-titulo h1 { font-size: 26px; font-weight: 900; color: var(--cor-texto-escuro); margin-bottom: 6px; }
+.checkout-titulo p { font-size: 13px; color: var(--cor-muted); }
+
+/* Layout principal em duas colunas */
+.container {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.card {
+  background: var(--cor-card);
+  border: 1px solid var(--cor-borda);
+  border-radius: 14px;
+  padding: 26px;
+  box-shadow: 0 6px 24px rgba(92,42,58,.06);
+}
+
+.card h2 {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--cor-texto-escuro);
+  margin-bottom: 20px;
+}
+
+.resumo-card { position: sticky; top: 90px; }
+
+/* Campos do formulário de entrega */
+.campo { margin-bottom: 16px; }
+.campo label {
+  display: block; font-size: 11px; font-weight: 700;
+  color: var(--cor-muted); text-transform: uppercase; letter-spacing: .5px;
+  margin-bottom: 6px;
+}
+.campo input,
+.campo select,
+select#pagamento {
+  width: 100%;
+  padding: 11px 13px;
+  border: 1.5px solid var(--cor-borda-input);
+  border-radius: 7px;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--cor-texto-escuro);
+  background: var(--cor-fundo);
+  transition: border-color .2s;
+  box-sizing: border-box;
+}
+.campo input:focus,
+.campo select:focus,
+select#pagamento:focus { outline: none; border-color: var(--cor-acento); }
+
+.linha-dupla { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+.campo.erro input,
+.campo.erro select { border-color: #c05060; background: #fff6f7; }
+
+/* Busca automática de endereço via CEP (API ViaCEP) */
+.campo-cep-wrap { position: relative; }
+.campo-cep-wrap input { padding-right: 34px; }
+.cep-status {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  pointer-events: none;
+}
+.cep-status.buscando::after {
+  content: "";
+  display: block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--cor-borda-input);
+  border-top-color: var(--cor-acento);
+  border-radius: 50%;
+  animation: girar-cep .7s linear infinite;
+}
+@keyframes girar-cep { to { transform: rotate(360deg); } }
+
+.campo input.preenchido-auto { background: #f6fbf7; border-color: #8fbf9f; }
+
+.erro-msg {
+  display: block;
+  min-height: 14px;
+  font-size: 11px;
+  color: #c05060;
+  margin-top: 4px;
+}
+
+/* Resumo do pedido */
+.produto {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--cor-borda);
+}
+.produto img {
+  width: 56px; height: 56px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+  background: var(--cor-soft);
+}
+.produto .info { flex: 1; min-width: 0; }
+.produto .info h4 { font-size: 13px; font-weight: 700; color: var(--cor-texto-escuro); margin-bottom: 2px; }
+.produto .info p { font-size: 12px; color: var(--cor-muted); }
+.produto .preco { font-size: 13px; font-weight: 800; color: var(--cor-texto-escuro); white-space: nowrap; }
+
+.resumo { margin-top: 6px; }
+.linha { display: flex; justify-content: space-between; font-size: 13px; color: var(--cor-subtexto); margin: 10px 0; }
+.linha.total {
+  font-size: 18px; font-weight: 900; color: var(--cor-texto-escuro);
+  border-top: 1.5px solid var(--cor-borda); padding-top: 14px; margin-top: 14px;
+}
+.linha.total span:last-child { color: var(--cor-acento); }
+
+/* Botão de confirmação */
+#btnConfirmar {
+  width: 100%;
+  padding: 14px;
+  margin-top: 20px;
+  background: var(--cor-acento);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: .3px;
+  transition: background .2s;
+}
+#btnConfirmar:hover { background: var(--cor-acento-d); }
+#btnConfirmar:disabled { background: var(--cor-borda-input); color: var(--cor-muted); cursor: not-allowed; }
+
+.seguranca { margin-top: 14px; font-size: 11px; color: var(--cor-muted); text-align: center; }
+
+/* TOAST (reaproveitado do site principal) */
+.toast {
+  position: fixed;
+  bottom: 24px; left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: var(--cor-texto-escuro); color: white;
+  padding: 12px 22px; border-radius: 8px;
+  font-size: 13px; letter-spacing: .2px;
+  white-space: nowrap; opacity: 0;
+  transition: opacity .25s, transform .25s;
+  pointer-events: none; z-index: 2000;
+  display: flex; align-items: center; gap: 8px;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* Ajustes responsivos */
+@media (max-width: 900px) {
+  .checkout-wrap { padding: 24px 20px 0; }
+  .container { grid-template-columns: 1fr; }
+  .linha-dupla { grid-template-columns: 1fr; }
+  .resumo-card { position: static; }
+}
