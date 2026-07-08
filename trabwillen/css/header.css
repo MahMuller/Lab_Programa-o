@@ -1,0 +1,201 @@
+/* ================================================================
+   header.css — Topbar, Header, nav desktop e menu mobile
+   TRABWILLEN — Confecções em Feltro
+   ================================================================ */
+
+/* Barra de avisos superior */
+.topbar {
+  background: var(--cor-texto-escuro);
+  color: #c9b0bb;
+  text-align: center;
+  font-size: 12px;
+  padding: 8px 20px;
+  letter-spacing: .3px;
+}
+.topbar strong { color: #f5c0d0; }
+
+/* Cabeçalho principal */
+header {
+  background: #fff;
+  border-bottom: 1px solid var(--cor-borda);
+  padding: 0 40px;
+  height: 66px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 500;
+  box-shadow: 0 2px 12px rgba(0,0,0,.06);
+}
+
+.logo {
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #3a2a32;
+}
+.logo em { color: var(--cor-acento); font-style: normal; }
+
+/* Links de navegação (desktop) */
+.nav-links {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--cor-subtexto);
+  letter-spacing: .3px;
+  position: relative;
+  padding-bottom: 3px;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 1.5px;
+  background: var(--cor-acento);
+  transition: width .22s;
+}
+.nav-links a:hover           { color: var(--cor-texto); }
+.nav-links a:hover::after    { width: 100%; }
+
+/* Ações do cabeçalho (busca, conta, carrinho) */
+.header-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Campo de busca */
+.search-wrap { position: relative; }
+.search-wrap input {
+  padding: 7px 34px 7px 13px;
+  border: 1.5px solid var(--cor-borda);
+  border-radius: 20px;
+  font-size: 13px;
+  width: 190px;
+  transition: width .3s, border-color .2s;
+  background: var(--cor-soft);
+  font-family: inherit;
+  color: var(--cor-texto);
+}
+.search-wrap input:focus { outline: none; border-color: var(--cor-acento); width: 230px; }
+.search-wrap .s-icon {
+  position: absolute;
+  right: 11px; top: 50%;
+  transform: translateY(-50%);
+  color: var(--cor-muted);
+  font-size: 14px;
+  pointer-events: none;
+}
+
+.btn-login {
+  background: transparent;
+  color: var(--cor-texto);
+  border: 1.5px solid var(--cor-borda-input);
+  padding: 7px 18px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all .2s;
+}
+.btn-login:hover { border-color: var(--cor-texto); }
+
+/* Área de conta: link de perfil e botão de sair */
+.conta-wrap { display: flex; align-items: center; gap: 8px; }
+.btn-perfil {
+  display: flex; align-items: center; gap: 6px;
+  background: var(--cor-soft);
+  color: var(--cor-texto);
+  border: 1.5px solid var(--cor-borda-input);
+  padding: 7px 16px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all .2s;
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.btn-perfil:hover { border-color: var(--cor-acento); color: var(--cor-acento); }
+.btn-sair {
+  background: transparent;
+  color: var(--cor-muted);
+  border: none;
+  font-size: 12px;
+  text-decoration: underline;
+  padding: 4px;
+  transition: color .2s;
+}
+.btn-sair:hover { color: #c0392b; }
+
+.btn-carrinho {
+  background: var(--cor-texto-escuro);
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .3px;
+  transition: background .2s;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-carrinho:hover { background: var(--cor-acento); }
+
+.cart-badge {
+  background: var(--cor-acento);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Botão de menu (mobile) */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  padding: 4px;
+}
+.hamburger span {
+  display: block;
+  width: 22px; height: 1.5px;
+  background: var(--cor-texto);
+  border-radius: 2px;
+}
+
+/* Menu de navegação mobile */
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  background: white;
+  border-bottom: 1px solid var(--cor-borda);
+  padding: 16px 24px;
+  gap: 4px;
+}
+.mobile-menu.aberto { display: flex; }
+.mobile-menu a {
+  font-size: 14px;
+  color: #5a3a4a;
+  font-weight: 500;
+  padding: 9px 0;
+  border-bottom: 1px solid #f5eaf0;
+}
+.mobile-menu a:last-child { border-bottom: none; }

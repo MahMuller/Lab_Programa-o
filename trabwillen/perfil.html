@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minha Conta — TRABWILLEN</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png" />
+  <link rel="manifest" href="assets/favicon/site.webmanifest" />
+  <meta name="theme-color" content="#c0587a" />
+
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/header.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/produtos.css" />
+  <link rel="stylesheet" href="css/perfil.css" />
+</head>
+<body>
+
+<!-- Barra de avisos (frete, parcelamento, promoções) -->
+<div class="topbar">
+  🚚 Frete grátis acima de R$150 &nbsp;·&nbsp; 💳 Parcele em 3x sem juros &nbsp;·&nbsp; <strong>Novas guirlandas disponíveis!</strong>
+</div>
+
+<!-- Cabeçalho principal -->
+<header>
+  <a href="index.html" class="logo">Trabwillen</a>
+
+  <ul class="nav-links">
+    <li><a href="index.html">Início</a></li>
+    <li><a href="index.html#produtos-section">Produtos</a></li>
+    <li><a href="index.html#carousel-enc">Encomendas</a></li>
+    <li><a href="index.html#enc-form-sec">Personalizar</a></li>
+    <li><a href="index.html#datas-section">Datas</a></li>
+    <li id="nav-perfil-item"><a href="perfil.html" class="ativo-link">Minha conta</a></li>
+  </ul>
+
+  <div class="header-actions">
+    <div class="conta-wrap" id="conta-wrap">
+      <button class="btn-login" id="btn-login" onclick="abrirModal('login')">Entrar</button>
+    </div>
+    <button class="btn-carrinho" onclick="abrirCarrinho()">
+      🛒 Carrinho
+      <span class="cart-badge" id="cart-badge">0</span>
+    </button>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<nav class="mobile-menu" id="mobile-menu">
+  <a href="index.html">Início</a>
+  <a href="index.html#produtos-section">Produtos</a>
+  <a href="index.html#carousel-enc">Encomendas</a>
+  <a href="index.html#enc-form-sec">Personalizar</a>
+  <a href="index.html#datas-section">Datas</a>
+  <a href="perfil.html" id="nav-perfil-item-mobile">Minha conta</a>
+  <div class="conta-wrap-mobile" id="conta-wrap-mobile">
+    <a href="#" onclick="abrirModal('login')">Entrar / Cadastrar</a>
+  </div>
+</nav>
+
+
+<!-- Estado exibido quando o usuário não está autenticado -->
+<div class="perfil-bloqueado" id="perfil-bloqueado">
+  <div class="pb-icone">🔒</div>
+  <h2>Entre na sua conta para continuar</h2>
+  <p>Faça login para ver seus dados pessoais, compras, encomendas e favoritos.</p>
+  <button class="btn-hero-p" onclick="abrirModal('login')">Entrar ou Cadastrar</button>
+</div>
+
+
+<!-- Conteúdo da conta do usuário -->
+<div class="perfil-wrap" id="perfil-conteudo">
+
+  <div class="perfil-topo">
+    <div class="pf-avatar" id="pf-avatar">?</div>
+    <div>
+      <h1 id="pf-nome-topo">—</h1>
+      <p id="pf-email-topo">—</p>
+    </div>
+  </div>
+
+  <div class="pf-resumo-cards">
+    <div class="pf-mini-card">
+      <div class="pf-mini-n" id="pf-n-compras">0</div>
+      <div class="pf-mini-l">Compras</div>
+    </div>
+    <div class="pf-mini-card">
+      <div class="pf-mini-n" id="pf-n-encomendas">0</div>
+      <div class="pf-mini-l">Encomendas</div>
+    </div>
+    <div class="pf-mini-card">
+      <div class="pf-mini-n" id="pf-n-favoritos">0</div>
+      <div class="pf-mini-l">Favoritos</div>
+    </div>
+  </div>
+
+  <div class="pf-tabs">
+    <button class="pf-tab-btn ativo" id="pf-tab-dados" onclick="trocarAbaPerfil('dados')">👤 Dados pessoais</button>
+    <button class="pf-tab-btn" id="pf-tab-compras" onclick="trocarAbaPerfil('compras')">🧾 Minhas compras</button>
+    <button class="pf-tab-btn" id="pf-tab-encomendas" onclick="trocarAbaPerfil('encomendas')">✉️ Minhas encomendas</button>
+    <button class="pf-tab-btn" id="pf-tab-favoritos" onclick="trocarAbaPerfil('favoritos')">❤️ Favoritos</button>
+  </div>
+
+  <!-- Painel: Dados pessoais -->
+  <div class="pf-painel ativo" id="painel-dados">
+    <div class="pf-card">
+      <h3>Dados da conta</h3>
+      <div class="pf-linha-dado">
+        <span>Nome completo</span>
+        <strong id="pf-nome">—</strong>
+      </div>
+      <div class="pf-linha-dado">
+        <span>E-mail</span>
+        <strong id="pf-email">—</strong>
+      </div>
+      <div class="pf-linha-dado">
+        <span>Último endereço de entrega</span>
+        <strong id="pf-ultimo-endereco">Nenhuma compra realizada ainda</strong>
+      </div>
+      <div class="pf-linha-dado">
+        <span>Último telefone de contato</span>
+        <strong id="pf-ultimo-telefone">—</strong>
+      </div>
+      <button class="btn-sair-perfil" onclick="sairConta()">🚪 Sair da conta</button>
+    </div>
+  </div>
+
+  <!-- Painel: Compras -->
+  <div class="pf-painel" id="painel-compras">
+    <div id="lista-compras"></div>
+  </div>
+
+  <!-- Painel: Encomendas -->
+  <div class="pf-painel" id="painel-encomendas">
+    <div id="lista-encomendas"></div>
+  </div>
+
+  <!-- Painel: Favoritos -->
+  <div class="pf-painel" id="painel-favoritos">
+    <div class="pf-favoritos-grid" id="grid-favoritos"></div>
+  </div>
+
+</div>
+
+
+<!-- Modal de login e cadastro (componente compartilhado) -->
+<div class="modal-overlay" id="modal-overlay" onclick="fecharModalFora(event)">
+  <div class="modal-box">
+    <button class="modal-fechar" onclick="fecharModal()">&#x2715;</button>
+
+    <div class="modal-logo">Trabwillen</div>
+
+    <div class="modal-tabs">
+      <button class="tab-btn ativo" id="tab-login"    onclick="trocarTab('login')">Entrar</button>
+      <button class="tab-btn"       id="tab-cadastro" onclick="trocarTab('cadastro')">Cadastrar</button>
+    </div>
+
+    <div class="tab-painel ativo" id="painel-login">
+      <div class="campo-grupo">
+        <label>E-mail</label>
+        <input type="email" id="login-email" placeholder="seu@email.com" />
+        <span class="msg-erro" id="erro-login-email"></span>
+      </div>
+      <div class="campo-grupo">
+        <label>Senha</label>
+        <input type="password" id="login-senha" placeholder="Sua senha" />
+        <span class="msg-erro" id="erro-login-senha"></span>
+      </div>
+      <button class="btn-modal-submit" onclick="validarLogin()">Entrar</button>
+      <div class="alerta-sucesso" id="ok-login">Login realizado com sucesso.</div>
+    </div>
+
+    <div class="tab-painel" id="painel-cadastro">
+      <div class="campo-grupo">
+        <label>Nome</label>
+        <input type="text" id="cad-nome" placeholder="Seu nome completo" />
+        <span class="msg-erro" id="erro-cad-nome"></span>
+      </div>
+      <div class="campo-grupo">
+        <label>E-mail</label>
+        <input type="email" id="cad-email" placeholder="seu@email.com" />
+        <span class="msg-erro" id="erro-cad-email"></span>
+      </div>
+      <div class="campo-grupo">
+        <label>Senha</label>
+        <input type="password" id="cad-senha" placeholder="Mínimo 6 caracteres" />
+        <span class="msg-erro" id="erro-cad-senha"></span>
+      </div>
+      <div class="campo-grupo">
+        <label>Confirmar senha</label>
+        <input type="password" id="cad-confirma" placeholder="Repita a senha" />
+        <span class="msg-erro" id="erro-cad-confirma"></span>
+      </div>
+      <button class="btn-modal-submit" onclick="validarCadastro()">Criar conta</button>
+      <div class="alerta-sucesso" id="ok-cadastro">Conta criada. Bem-vindo(a) à Trabwillen.</div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- Modal de detalhes do produto (usado ao abrir um favorito) -->
+<div class="prod-modal-overlay" id="prod-modal-overlay">
+  <div class="prod-modal" id="prod-modal">
+    <div id="pm-content"></div>
+  </div>
+</div>
+
+
+<!-- Painel lateral do carrinho -->
+<div class="drawer-overlay" id="drawer-overlay" onclick="fecharCarrinho()"></div>
+<div class="cart-drawer" id="cart-drawer">
+  <div class="cart-head">
+    <h2>🛒 Meu Carrinho</h2>
+    <button class="close-btn" onclick="fecharCarrinho()">✕</button>
+  </div>
+  <div class="cart-body" id="cart-body"></div>
+  <div class="cart-foot" id="cart-foot" style="display:none">
+    <div class="cart-total">Total <span id="cart-total-val">R$ 0,00</span></div>
+    <button class="btn-checkout" onclick="irParaCheckout()">Finalizar compra →</button>
+    <button class="btn-continue" onclick="fecharCarrinho()">Continuar comprando</button>
+  </div>
+</div>
+
+
+<!-- Notificação flutuante (toast) -->
+<div class="toast" id="toast">
+  <span id="toast-icon">✅</span>
+  <span id="toast-msg">Produto adicionado!</span>
+</div>
+
+
+<!-- Scripts -->
+<script src="js/dados.js"></script>
+<script src="js/carrinho.js"></script>
+<script src="js/modal.js"></script>
+<script src="js/menu.js"></script>
+<script src="js/perfil.js"></script>
+
+</body>
+</html>
